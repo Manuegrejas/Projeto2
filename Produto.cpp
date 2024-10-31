@@ -4,9 +4,35 @@ using namespace std;
 class Produto{
     private:
     public:
-        string nome;
-        double preco;
-        int quantidade;
+        string Nome;
+        float Preco;
+        int Quantidade;
 
-    Produto():
+    Produto(string Nome, float Preco, int Quantidade): 
+    Nome(Nome), Preco(Preco), Quantidade(Quantidade){}
+
+    void setNome(){
+
+    }
+
+    string getNome(){
+
+    }
+
+    void setPreco(){
+
+    }
+
+    float getPreco(){
+
+    }
+
+    void setQuantidade(){
+
+    }
+
+    int getQuantidade(){
+
+    }
+
 };

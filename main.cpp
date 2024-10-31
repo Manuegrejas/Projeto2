@@ -26,8 +26,6 @@ int main(){
 
         cout << "Digite a letra correspondente a função que será realizada: " << endl;
         scanf(" %c", &x);
-
-        if 
 }
     return 0;
 }
