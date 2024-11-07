@@ -71,20 +71,62 @@ class Estoque{
             cin >> categoria;
         produto[i] = new Limpeza(nome, preco, quantidade, marca, categoria);
         }
-
+        cout << "Redirecionando para o Menu.";
         i = i++;
     }
 
     void EditarQuantidade(){
-
+        string editar;
+        int nQuantidade;
+        cout << "Qual produto gostaria de modificar? ";
+        cin >> editar;
+        for (int a =0; a < 100; a++){
+            if (produto[a]->getNome() == editar){
+                cout << "\nQuantidade atual: " << produto[a]->getQuantidade() << endl;
+                cout << "Qual a quantidade desejada? ";
+                cin >> nQuantidade;
+                produto[a]->setQuantidade(nQuantidade);
+                cout << "\nQuantidade alterada com sucesso!";
+            } else {
+                cout << "Produto não encontrado.";
+            }
+        }
+        cout << "Redirecionando para o Menu.";
     }
 
     void PesquisarProduto(){
-
+        string pesquisa;
+        cout << "Qual produto gostaria de pesquisar? ";
+        cin >> pesquisa;
+        for (int a = 0; a < 100; a++){
+            if (produto[a]->getNome() == pesquisa){
+                produto[a]->ImprimeDados();
+            } else {
+                cout << "Produto não encontrado.";
+            }
+        }
+        cout << "Redirecionando para o Menu.";
     }
 
     void VendaProduto(){
-
+        string venda;
+        char resposta;
+        int x = 1;
+        while (x != 0){
+            cout << "Qual produto foi comprado? ";
+            cin >> venda;
+            for (int a = 0; a < 100; a++){
+                if (produto[a]->getNome() == venda){
+                    //algoritmo pra venda
+                }
+            }
+            cout << "\nOutro produto foi comprado? s-sim n-não" << endl;
+            cin >> resposta;
+            if (resposta == 'n'){
+                x = 0;
+            }
+        }
+        cout << "Redirecionando para o Menu.";
     }
 
     void VisualizarRecibo(){

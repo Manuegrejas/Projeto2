@@ -12,18 +12,27 @@ class Eletronico: public Produto{
     Produto(Nome, Preco, Quantidade), TensaoDeOperacao(TensaoDeOperacao), DatadeFabricacao(DatadeFabricacao){}
 
     void setTensaoDeOperacao(){
-
+        this -> TensaoDeOperacao = TensaoDeOperacao;
     }
 
     float getTensaoDeOperacao(){
-
+        return TensaoDeOperacao;
     }
 
     void setDatadeFabricacao(){
-
+        this -> DatadeFabricacao = DatadeFabricacao;
     }
 
     string getDatadeFabricacao(){
+        return DatadeFabricacao;
+    }
 
+    void ImprimeDados(){
+        cout << "Seção -> Eletrônicos" << endl;
+        cout << "Nome do Produto: " << Nome << endl;
+        cout << "Preço: " << Preco << endl;
+        cout << "Quantidade: " << Quantidade << endl;
+        cout << "Tensão de Operação: " << TensaoDeOperacao << endl;
+        cout << "Data de Fabricação: " << DatadeFabricacao << endl;
     }
 };
