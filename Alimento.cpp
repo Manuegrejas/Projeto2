@@ -35,4 +35,15 @@ class Alimento: public Produto{
         cout << "Data de Validade: " << DataDeValidade << endl;
         cout << "Tipo de Alimento: " << Tipo << endl;
     }
+
+    string RetornaDados(){
+        string nome = Nome;
+        string preco = to_string(Preco);
+        string quantidade = to_string(Quantidade);
+        string datadevalidade = DataDeValidade;
+        string tipo = Tipo;
+
+        return "Alimento - Nome: " + nome + "; Quantidade: " + quantidade + "; Preço: R$" + preco + "; Data de Validade: " + datadevalidade + "; Tipo: " + tipo + ";";
+    }
+
 };

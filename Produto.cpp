@@ -42,4 +42,14 @@ class Produto{
 
     virtual void ImprimeDados(){}
 
+    string VoltaDados(){
+        string nome = Nome;
+        string preco = to_string(Preco);
+        string quantidade = to_string(Quantidade);
+
+        return nome + " " + quantidade + " R$ " + preco;
+    }
+
+    virtual string RetornaDados(){}
+
 };

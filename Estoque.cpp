@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include "Produto.cpp"
 #include "Alimento.cpp"
 #include "Eletronico.cpp"
@@ -16,6 +17,18 @@ class Estoque{
         Estoque(){}
 
     void VisualizarEstoque(){
+        cout << "============================" << endl;
+        cout << "ESTOQUE" << endl; 
+        fstream arquivo;
+        string texto;
+        arquivo.open("Estoque", ios::in);
+        if(arquivo.is_open()){
+            while( getline(arquivo, texto)) {
+                cout << texto << "\n";
+            }
+            arquivo.close();
+        }
+        cout << "============================" << endl;
 
     }
 
@@ -108,16 +121,27 @@ class Estoque{
         cout << "Redirecionando para o Menu.";
     }
 
+    Produto* vendas[20];
+    int v = 0;
+
     void VendaProduto(){
         string venda;
         char resposta;
+        int quant;
         int x = 1;
         while (x != 0){
             cout << "Qual produto foi comprado? ";
             cin >> venda;
             for (int a = 0; a < 100; a++){
                 if (produto[a]->getNome() == venda){
-                    //algoritmo pra venda
+                    cout << "\nQuantidade vendida: ";
+                    cin >> quant;
+                    int quantA = produto[a]->getQuantidade() - quant;
+                    produto[a]->setQuantidade(quantA);
+                    float preco = produto[a]->getPreco();
+
+                    vendas[v] = new Produto(venda, preco, quant);
+                    v = v++;
                 }
             }
             cout << "\nOutro produto foi comprado? s-sim n-não" << endl;
@@ -126,16 +150,53 @@ class Estoque{
                 x = 0;
             }
         }
+
+        fstream arquivo;
+        arquivo.open("Recibo", ios::out);
+        if(arquivo.is_open()){
+            for (int a = 0; a <= v; a++){
+                arquivo << vendas[a]->VoltaDados() << endl;
+            }
+            arquivo.close();
+        }
         cout << "Redirecionando para o Menu.";
     }
 
     void VisualizarRecibo(){
+        float total = 0;
+        for (int a = 0; a <= v; a++){
+            float precoUn = vendas[a]->getPreco();
+            int quant = vendas[a]->getQuantidade();
+            total = total + (precoUn*quant); 
+        }
+        cout << "============================" << endl;
+        cout << "RECIBO DE COMPRA" << endl; 
+        cout << "Produto - Quantidade - Preço" << endl;
+        fstream arquivo;
+        string texto;
+        arquivo.open("Recibo", ios::in);
+        if(arquivo.is_open()){
+            while( getline(arquivo, texto)) {
+                cout << texto << "\n";
+            }
+            arquivo.close();
+        }
+        cout << "Preço total da compra: R$ " << total;
+        cout << "============================" << endl;
 
     }
 
     int Sair(){
         return 0; 
         //adicionar os dados pro arquivo
+        fstream arquivo;
+        arquivo.open("Estoque", ios::out);
+        if(arquivo.is_open()){
+            for (int a = 0; a <= i; a++){
+                arquivo << produto[a]->RetornaDados() << endl;
+            }
+            arquivo.close();
+        }
     }
 
 };

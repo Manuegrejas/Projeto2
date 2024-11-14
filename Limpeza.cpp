@@ -36,4 +36,15 @@ class Limpeza: public Produto{
         cout << "Marca: " << Marca << endl;
         cout << "Categoria de Risco: " << Categoria << endl;
     }
+
+
+    string RetornaDados(){
+        string nome = Nome;
+        string preco = to_string(Preco);
+        string quantidade = to_string(Quantidade);
+        string marca = Marca;
+        string categoria = Categoria;
+
+        return "Limpeza - Nome: " + nome + "; Quantidade: " + quantidade + "; Preço: R$" + preco + "; Marca: " + marca + "; Categoria de Risco: " + categoria + ";";
+    }
 };
