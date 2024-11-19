@@ -14,6 +14,8 @@ int main(){
 
     Estoque e1;
 
+    e1.LerEstoque();
+
     int n = 1;
     char x;
     while (n != 0){

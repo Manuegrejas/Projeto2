@@ -32,7 +32,21 @@ class Estoque{
 
     }
 
-    int i = 0;
+    int i =0;
+
+    bool LerEstoque(){
+        fstream arquivo;
+        string texto;
+        arquivo.open("Estoque", ios::in);
+        if(arquivo.is_open()){
+            while( getline(arquivo, texto)) {
+                
+
+                i++;
+            }
+            arquivo.close();
+        }
+    }
 
     void AdicionarProduto(){
         string secao;
@@ -85,7 +99,7 @@ class Estoque{
         produto[i] = new Limpeza(nome, preco, quantidade, marca, categoria);
         }
         cout << "Redirecionando para o Menu.";
-        i = i++;
+        i++;
     }
 
     void EditarQuantidade(){
@@ -93,16 +107,14 @@ class Estoque{
         int nQuantidade;
         cout << "Qual produto gostaria de modificar? ";
         cin >> editar;
-        for (int a =0; a < 100; a++){
+        for (int a =0; a < i; a++){
             if (produto[a]->getNome() == editar){
                 cout << "\nQuantidade atual: " << produto[a]->getQuantidade() << endl;
                 cout << "Qual a quantidade desejada? ";
                 cin >> nQuantidade;
                 produto[a]->setQuantidade(nQuantidade);
                 cout << "\nQuantidade alterada com sucesso!";
-            } else {
-                cout << "Produto não encontrado.";
-            }
+            } 
         }
         cout << "Redirecionando para o Menu.";
     }
@@ -111,12 +123,11 @@ class Estoque{
         string pesquisa;
         cout << "Qual produto gostaria de pesquisar? ";
         cin >> pesquisa;
-        for (int a = 0; a < 100; a++){
+        for (int a = 0; a < i; a++){
+            cout << produto[a]->getNome() << endl;
             if (produto[a]->getNome() == pesquisa){
                 produto[a]->ImprimeDados();
-            } else {
-                cout << "Produto não encontrado.";
-            }
+            } 
         }
         cout << "Redirecionando para o Menu.";
     }
@@ -132,7 +143,7 @@ class Estoque{
         while (x != 0){
             cout << "Qual produto foi comprado? ";
             cin >> venda;
-            for (int a = 0; a < 100; a++){
+            for (int a = 0; a < i; a++){
                 if (produto[a]->getNome() == venda){
                     cout << "\nQuantidade vendida: ";
                     cin >> quant;
@@ -141,7 +152,7 @@ class Estoque{
                     float preco = produto[a]->getPreco();
 
                     vendas[v] = new Produto(venda, preco, quant);
-                    v = v++;
+                    v++;
                 }
             }
             cout << "\nOutro produto foi comprado? s-sim n-não" << endl;
@@ -154,7 +165,7 @@ class Estoque{
         fstream arquivo;
         arquivo.open("Recibo", ios::out);
         if(arquivo.is_open()){
-            for (int a = 0; a <= v; a++){
+            for (int a = 0; a < v; a++){
                 arquivo << vendas[a]->VoltaDados() << endl;
             }
             arquivo.close();
@@ -164,7 +175,7 @@ class Estoque{
 
     void VisualizarRecibo(){
         float total = 0;
-        for (int a = 0; a <= v; a++){
+        for (int a = 0; a < v; a++){
             float precoUn = vendas[a]->getPreco();
             int quant = vendas[a]->getQuantidade();
             total = total + (precoUn*quant); 
@@ -181,22 +192,24 @@ class Estoque{
             }
             arquivo.close();
         }
-        cout << "Preço total da compra: R$ " << total;
+        cout << "Preço total da compra: R$ " << total << endl;
         cout << "============================" << endl;
 
     }
 
     int Sair(){
-        return 0; 
         //adicionar os dados pro arquivo
         fstream arquivo;
+        cout << i << endl;
         arquivo.open("Estoque", ios::out);
         if(arquivo.is_open()){
-            for (int a = 0; a <= i; a++){
+            for (int a = 0; a < i; a++){
                 arquivo << produto[a]->RetornaDados() << endl;
             }
             arquivo.close();
         }
+
+        return 0; 
     }
 
 };
