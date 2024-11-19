@@ -124,7 +124,6 @@ class Estoque{
         cout << "Qual produto gostaria de pesquisar? ";
         cin >> pesquisa;
         for (int a = 0; a < i; a++){
-            cout << produto[a]->getNome() << endl;
             if (produto[a]->getNome() == pesquisa){
                 produto[a]->ImprimeDados();
             } 
